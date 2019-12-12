@@ -1,4 +1,5 @@
 import json
+import pathlib
 
 import azure.functions as func
 
@@ -17,7 +18,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # If format is wrong, return 400 Bad Request
     if original and guesses:
         # Load Word2Vec model
-        model = Word2Vec.load('data/vectors.model')
+        model = Word2Vec.load(str(pathlib.Path(__file__).parent / 'vectors.model'))
         wv = model.wv
 
         # Check that the original word is in model
@@ -32,6 +33,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             else:
                 similarities.append(str(0))
 
-        return func.HttpResponse(json.dumps(similarities))
+        return func.HttpResponse(json.dumps({"original": original, "distances":similarities}))
     else:
         return func.HttpResponse("The format of the JSON request was invalid.", status_code=400)

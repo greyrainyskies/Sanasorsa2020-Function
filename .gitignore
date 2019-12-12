@@ -6,6 +6,7 @@ edge
 Publish
 .vscode/
 data/
+vectors.model
 
 *.user
 *.suo
