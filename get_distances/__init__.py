@@ -11,8 +11,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     except ValueError:
         return func.HttpResponse("No JSON data found in the request body.", status_code=400) # If no body is found, return 400 Bad Request
     else:
-        original = req_body.get('original')
-        guesses = req_body.get('guesses')
+        original = req_body.get('original').lower() # Putting inputs to lower-case, just in case
+        guesses = [x.lower() for x in req_body.get('guesses')]
     
     # If format is wrong, return 400 Bad Request
     if original and guesses:
@@ -35,36 +35,3 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(json.dumps(similarities))
     else:
         return func.HttpResponse("The format of the JSON request was invalid.", status_code=400)
-
-    # model = Word2Vec.load('data/wikiW2Vtest.model')
-
-    # wv = model.wv
-
-    # if in wv:
-    #     model.w
-
-    # # result = model.wv.similarity('hkj', 'sukkula')
-
-    # # model = KeyedVectors.load('get_distances/keyed.txt')
-
-    # # vector = model.wv['avaruussukkula']
-
-    # logging.info(result)
-    # return func.HttpResponse(str(result))
-
-    # name = req.params.get('name')
-    # if not name:
-    #     try:
-    #         req_body = req.get_json()
-    #     except ValueError:
-    #         pass
-    #     else:
-    #         name = req_body.get('name')
-
-    # if name:
-    #     return func.HttpResponse(f"Hello {name}!")
-    # else:
-    #     return func.HttpResponse(
-    #          "Please pass a name on the query string or in the request body",
-    #          status_code=400
-    #     )
