@@ -3,7 +3,7 @@ import pathlib
 
 import azure.functions as func
 
-from gensim.models import Word2Vec
+from gensim.models import KeyedVectors
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     # Parse Http-request body into original word and an array of guessed words:
@@ -18,8 +18,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # If format is wrong, return 400 Bad Request
     if original and guesses:
         # Load Word2Vec model
-        model = Word2Vec.load(str(pathlib.Path(__file__).parent / 'vectors.model'))
-        wv = model.wv
+        # model = Word2Vec.load(str(pathlib.Path(__file__).parent / 'vectors.model'))
+        wv = KeyedVectors.load(str(pathlib.Path(__file__).parent / 'data' / 'vectors.kv'), mmap='r')
 
         # Check that the original word is in model
         if original not in wv:
