@@ -32,6 +32,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 similarities.append(str(wv.similarity(original, guessed_word)))
             else:
                 similarities.append(str(0))
-        return func.HttpResponse(json.dumps({"data":similarities}))
+        return func.HttpResponse(
+            body=json.dumps({"data":similarities}),
+            status_code=200,
+            headers={"Content-Type":"application/json"}
+            )
     else:
         return func.HttpResponse("The format of the JSON request was invalid.", status_code=400)
