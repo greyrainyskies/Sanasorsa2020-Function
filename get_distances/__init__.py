@@ -47,8 +47,8 @@ def CalculateScore(original, guess, wordVectors):
     angle = math.degrees(math.acos(wordVectors.similarity(original, guess)))
 
     if angle != 0:
-            score = 100000000/(angle**3)
-        else:
+            score = math.floor(100000/(angle**3))
+    else:
             score = 0
 
     return score
