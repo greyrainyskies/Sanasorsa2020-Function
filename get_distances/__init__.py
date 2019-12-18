@@ -30,7 +30,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         for guessed_word in guesses:
             # Check if guess is in the model, otherwise return 0
             if guessed_word in wv:
-                similarities.append(str(CalculateScore(original, guessed_word)))
+                similarities.append(str(CalculateScore(original, guessed_word, wv)))
                 # similarities.append(str(wv.similarity(original, guessed_word)))
             else:
                 similarities.append(str(0))
@@ -43,8 +43,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse("The format of the JSON request was invalid.", status_code=400)
 
 
-def CalculateScore(original, guess):
-    angle = math.degrees(math.acos(model.wv.similarity(original, guess)))
+def CalculateScore(original, guess, wordVectors):
+    angle = math.degrees(math.acos(wordVectors.similarity(original, guess)))
 
     if angle != 0:
             score = 100000000/(angle**3)
