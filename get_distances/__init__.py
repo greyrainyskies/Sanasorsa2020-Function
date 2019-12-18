@@ -1,5 +1,6 @@
 import json
 import pathlib
+import math
 
 import azure.functions as func
 
@@ -29,7 +30,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         for guessed_word in guesses:
             # Check if guess is in the model, otherwise return 0
             if guessed_word in wv:
-                similarities.append(str(wv.similarity(original, guessed_word)))
+                similarities.append(str(CalculateScore(wv.similarity(original, guessed_word))))
+                # similarities.append(str(wv.similarity(original, guessed_word)))
             else:
                 similarities.append(str(0))
         return func.HttpResponse(
@@ -39,3 +41,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             )
     else:
         return func.HttpResponse("The format of the JSON request was invalid.", status_code=400)
+
+
+def CalculateScore(similarity):
+    angle = math.degrees(math.acos(similarity))
+
+    if angle != 0:
+            score = math.floor(100000/(angle**3))
+    else:
+            score = 0
+
+    return score
