@@ -12,4 +12,6 @@ All the components of the game were designed to run on Azure. This Azure functio
 
 The game is voice controlled and can be played without using the keyboard. Alternatively, the player can write their guesses into the text box. The goal of the game is to list as many words related to the word provided by the game in 10 seconds. After three rounds, the player can choose to enter their score to be included in the leaderboard or they can start again without saving their scores.
 
-[![A full gameplay video](http://img.youtube.com/vi/vCN54GZkiyo/0.jpg)](http://www.youtube.com/watch?v=vCN54GZkiyo "Sanasorsa 2020 Gameplay")
+![Watch the gameplay video here.](http://www.youtube.com/watch?v=vCN54GZkiyo "Sanasorsa 2020 Gameplay")
+
+[![A full gameplay video](Sanasorsa2020-screen.png)](http://www.youtube.com/watch?v=vCN54GZkiyo "Sanasorsa 2020 Gameplay")
