@@ -26,7 +26,7 @@ We worked on different parts of the software as separate projects. This reposito
 
 The code for the frontend single-page-application as well as the backend REST-API can be found in [this repository](https://github.com/SaskaYl/Sanasorsa).
 
-The material cleaning scripts and model training scripts are yet to be updated to be public.
+The material cleaning scripts and model training scripts are yet to be updated and published.
 
 ## Collaborators
 
